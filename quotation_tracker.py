@@ -57,19 +57,21 @@ def add_quotation():
   return quotation
 
 def display_quotations(quotations):
-  for quotation in quotations:
-    print(f"Customer: {quotation['customer']}")
-    print(f"Quotation Number: {quotation['quotation-number']}")
-    print(f"Price: {quotation['price']}")
-    print(f"Description: {quotation['description']}")
+  if not quotations:
+    print("No quotations found")
+  else:
+    for quotation in quotations:
+      print(f"Customer: {quotation['customer']}")
+      print(f"Quotation Number: {quotation['quotation-number']}")
+      print(f"Price: {quotation['price']}")
+      print(f"Description: {quotation['description']}")
 
 def search_quotations(quotations):
-
   found = False
   quotation_number = "T-" + input("Please enter the quotation number: ")
   for quote in quotations:
     if quote["quotation-number"] == quotation_number:
-      print(quote)
+      display_quotations([quote])
       found = True
   if found == False:
     print("Quotation not found")
@@ -90,13 +92,16 @@ def main():
     choice = check_for_range("Please choose an action: ",1,4)
     if choice == 1:
       quotations.append(add_quotation())
-      repeat_checker = repeat_check("Do you want to do another operation(Y/N):")
+      
     elif choice == 2:
       display_quotations(quotations)
-      repeat_checker = repeat_check("Do you want to do another operation(Y/N): ")
+      
     elif choice == 3:
       search_quotations(quotations)
-      repeat_checker = repeat_check("Do you want to do another operation(Y/N):")
+    
     elif choice == 4:
       print("Goodbye")
       break
+    repeat_checker = repeat_check("Do you want to do another operation(Y/N):")
+
+main()
