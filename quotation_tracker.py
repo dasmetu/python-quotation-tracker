@@ -76,6 +76,21 @@ def search_quotations(quotations):
   if found == False:
     print("Quotation not found")
     
+def quote_deletion(quotations):
+  found = False
+  quotation_number = "T-" + input("Please enter the quotation number: ")
+  for quote in quotations:
+    if quote["quotation-number"] == quotation_number:
+      display_quotations([quote])
+      user_input = check_for_valid_string("Do you really want to delete this quote",["Y","N","YES","NO"])
+      if user_input == "YES" or user_input == "Y":
+        quotations.remove(quote)
+        print("Quotation deleted")
+      else:
+        print("Deletion cancelled")
+      found = True
+  if found == False:
+    print("Quotation not found")
 
 # =========================
 # Main Function
