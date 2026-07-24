@@ -91,6 +91,31 @@ def quote_deletion(quotations):
       found = True
   if found == False:
     print("Quotation not found")
+  
+def quote_update(quotations):
+  found = False
+  quotation_number = "T-" + input("Please enter the quotation number: ")
+  for quote in quotations:
+    if quote["quotation-number"] == quotation_number:
+      print("What do you want to update?")
+      print("1 - Customer Name")
+      print("2 - Quotation Number")
+      print("3 - Quotation Price")
+      print("4 - Quotation Description")
+      print("5 - Cancel")
+      choice = check_for_range("Please choose an action: ",1,5)
+      if choice == 1:
+        customer_name = input("Please enter the customer name: ")
+        quotation = {
+        "customer":customer_name,
+        }
+      elif choice == 2:
+
+      elif choice == 3:
+
+      elif choice == 4:
+
+      elif choice == 5:
 
 # =========================
 # Main Function
