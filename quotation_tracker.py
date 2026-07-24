@@ -82,7 +82,7 @@ def quote_deletion(quotations):
   for quote in quotations:
     if quote["quotation-number"] == quotation_number:
       display_quotations([quote])
-      user_input = check_for_valid_string("Do you really want to delete this quote",["Y","N","YES","NO"])
+      user_input = check_for_valid_string("Do you really want to delete this quote: ",["Y","N","YES","NO"])
       if user_input == "YES" or user_input == "Y":
         quotations.remove(quote)
         print("Quotation deleted")
@@ -105,17 +105,23 @@ def quote_update(quotations):
       print("5 - Cancel")
       choice = check_for_range("Please choose an action: ",1,5)
       if choice == 1:
-        customer_name = input("Please enter the customer name: ")
-        quotation = {
-        "customer":customer_name,
-        }
+        customer_name = input("Please enter the new customer name: ")
+        quote['customer_name'] = customer_name
+        return quote1
       elif choice == 2:
-
+        quotation_number = input("Please enter the new quotation number: ")
+        quote['quotation_number'] = quotation_number
+        return quote
       elif choice == 3:
-
+        price = check_for_integer("Please enter the new quotation price: ")
+        quote['quotation_price'] = price
+        return quote
       elif choice == 4:
-
+        description = input("Please enter the new quotation description: ")
+        quote['description'] = description
+        return quote
       elif choice == 5:
+        print('Action Cancelled')
 
 # =========================
 # Main Function
@@ -128,8 +134,10 @@ def main():
     print("1 - Add Quotation")
     print("2 - Display Quotations")
     print("3 - Search Quotations")
-    print("4 - Exit Program")
-    choice = check_for_range("Please choose an action: ",1,4)
+    print("4 - Update Quotation")
+    print("5 - Quote Deletion")
+    print("6 - Exit Program")
+    choice = check_for_range("Please choose an action: ",1,6)
     if choice == 1:
       quotations.append(add_quotation())
       
@@ -138,8 +146,14 @@ def main():
       
     elif choice == 3:
       search_quotations(quotations)
-    
+
     elif choice == 4:
+      quote_update(quotations)
+
+    elif choice == 5:
+      quote_deletion(quotations)
+
+    elif choice == 6:
       print("Goodbye")
       break
     repeat_checker = repeat_check("Do you want to do another operation(Y/N):")
