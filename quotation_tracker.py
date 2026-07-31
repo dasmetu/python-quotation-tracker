@@ -68,7 +68,7 @@ def display_quotations(quotations):
 
 def search_quotations(quotations):
   found = False
-  quotation_number = "T-" + input("Please enter the quotation number: ")
+  quotation_number = input("Please enter the quotation number: ")
   for quote in quotations:
     if quote["quotation-number"] == quotation_number:
       display_quotations([quote])
@@ -78,7 +78,7 @@ def search_quotations(quotations):
     
 def quote_deletion(quotations):
   found = False
-  quotation_number = "T-" + input("Please enter the quotation number: ")
+  quotation_number = input("Please enter the quotation number: ")
   for quote in quotations:
     if quote["quotation-number"] == quotation_number:
       display_quotations([quote])
@@ -94,7 +94,7 @@ def quote_deletion(quotations):
   
 def quote_update(quotations):
   found = False
-  quotation_number = "T-" + input("Please enter the quotation number: ")
+  quotation_number = input("Please enter the quotation number: ")
   for quote in quotations:
     if quote["quotation-number"] == quotation_number:
       print("What do you want to update?")
@@ -103,25 +103,24 @@ def quote_update(quotations):
       print("3 - Quotation Price")
       print("4 - Quotation Description")
       print("5 - Cancel")
+      found = True
       choice = check_for_range("Please choose an action: ",1,5)
       if choice == 1:
         customer_name = input("Please enter the new customer name: ")
-        quote['customer_name'] = customer_name
-        return quote1
+        quote['customer'] = customer_name
       elif choice == 2:
         quotation_number = input("Please enter the new quotation number: ")
-        quote['quotation_number'] = quotation_number
-        return quote
+        quote['quotation-number'] = quotation_number
       elif choice == 3:
         price = check_for_integer("Please enter the new quotation price: ")
-        quote['quotation_price'] = price
-        return quote
+        quote['price'] = price
       elif choice == 4:
         description = input("Please enter the new quotation description: ")
         quote['description'] = description
-        return quote
       elif choice == 5:
         print('Action Cancelled')
+  if found == False:
+    print("Quotation not found")
 
 # =========================
 # Main Function
@@ -135,7 +134,7 @@ def main():
     print("2 - Display Quotations")
     print("3 - Search Quotations")
     print("4 - Update Quotation")
-    print("5 - Quote Deletion")
+    print("5 - Delete Quotation")
     print("6 - Exit Program")
     choice = check_for_range("Please choose an action: ",1,6)
     if choice == 1:
