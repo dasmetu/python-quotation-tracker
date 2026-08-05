@@ -14,7 +14,7 @@ def check_for_integer(prompt):
       break
     except ValueError:
       print("Please enter a valid number")
-      return check_number
+  return check_number
 
 def check_for_range(prompt, low, high):
   while True:
@@ -39,7 +39,7 @@ def check_for_non_blank(prompt):
     if check_string != "":
       return check_string
     print(f"This is not a valid {prompt}.")
-  
+
 def check_for_negative(prompt):
   while True:
       check_number = check_for_integer(prompt)
@@ -48,12 +48,12 @@ def check_for_negative(prompt):
       else:
         return check_number
 
-def check_for_duplicate(items,prompt,key):
+def check_for_duplicate(items,prompt,key,current_item = 0):
   while True:
     duplicate = False
     check_variable = input(prompt)
-    for quote in items:
-      if check_variable == quote[key]:
+    for i in items:
+      if check_variable == i[key] and current_item != i:
         duplicate = True
     if duplicate:
       print("Duplicate Found")
@@ -145,15 +145,15 @@ def quote_update(quotations):
       choice = check_for_range("Please choose an action: ",1,5)
 
       if choice == 1:
-        customer_name = input("Please enter the new customer name: ")
+        customer_name = check_for_non_blank("customer name")
         quote['customer'] = customer_name
 
       elif choice == 2:
-        quotation_number = input("Please enter the new quotation number: ")
+        quotation_number = check_for_duplicate(quotations,"Please enter the new quotation number: ","quotation-number",quote)
         quote['quotation-number'] = quotation_number
 
       elif choice == 3:
-        price = check_for_integer("Please enter the new quotation price: ")
+        price = check_for_negative("Please enter the new quotation price: ")
         quote['price'] = price
 
       elif choice == 4:
@@ -188,7 +188,7 @@ def main(quotations):
     choice = check_for_range("Please choose an action: ",1,6)
 
     if choice == 1:
-      quotations.append(add_quotation())
+      quotations.append(add_quotation(quotations))
       save_quotations(quotations)
 
     elif choice == 2:
