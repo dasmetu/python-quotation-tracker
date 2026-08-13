@@ -1,3 +1,5 @@
+FILEPATH = "quotations.json"
+
 from validation import *
 from quotation_manager import *
 from storage import *
