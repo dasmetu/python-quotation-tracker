@@ -1,0 +1,14 @@
+[
+    {
+        "customer": "User 1",
+        "quotation-number": "001",
+        "price": 100,
+        "description": "001"
+    },
+    {
+        "customer": "User 2",
+        "quotation-number": "002",
+        "price": 300,
+        "description": "002"
+    }
+]
